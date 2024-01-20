@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <title>{{ title }} | {{ site.site_title }}</title>
-      {% include './layouts/meta.liquid' %}
-      {%- comment -%} Styles {%- endcomment -%}
-      <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
-      <link href="/vendor/phosphor-icons/css/phosphor.css" rel="stylesheet" />
-      <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" />
-      <link rel="stylesheet" href="/css/theme.css" />
+<html lang="de">
+<head>
+  <title>{{ title }} | {{ site.site_title }}</title>
+  {% include './layouts/meta.liquid' %}
+  {%- comment -%} Styles {%- endcomment -%}
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/libs/tailwind.css">
+  <link rel="stylesheet" media="all" href="/css/libs/light.css">
+  {%- comment -%} Favicon {%- endcomment -%}
+  <link rel="shortcut icon" href="{{ site.favicon_icon }}" type="image/x-icon">
+  <link rel="icon" href="{{ site.favicon_image }}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{ site.favicon_image }}">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js"></script>
 
-      {%- comment -%} Favicon {%- endcomment -%}
-      <link rel="shortcut icon" href="{{ site.favicon_icon }}" type="image/x-icon" />
-      <link rel="icon" href="{{ site.favicon_image }}" type="image/x-icon" />
-      <link rel="apple-touch-icon" href="{{ site.favicon_image }}">
-      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js"></script>
-   </head>
-   <body>
-   {% include './layouts/nav.liquid' %}
+  <script src="/js/libs/preline/preline.js"></script>
+
+  <script src="/js/utils.js"></script>
+
+  <script type="module">
+    import { Island } from "/is-land.js";
+    import "/is-land-autoinit.js";
+  </script>
+</head>
+<body>
+
+{% include './layouts/nav.liquid' %}

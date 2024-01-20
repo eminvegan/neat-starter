@@ -3,29 +3,23 @@ spec:
   structures:
     - content_blocks
   label: Home Hero
-  description: Home Hero section
-  icon: "cottage"
+  description: Home Hero Section
+  icon: "title"
   tags: ["hero"]
 
 # Defines the structure of this component, as well as the default values
 blueprint:
-  title: Email Marketing is Future for Grow Your Business Revenues
-  description: We believe that a good email marketing strategy is the key to growth. So we’re helping you grow your business with tools and resources that make email marketing easy.
-  image: /images/hero/hero-image-2.png
-  image_alt: Dashboard with reports
-  button:
-    text: Try This Free
-    url: /signup
+  title: Google Bewertungen löschen
+  subtitle: Spezialkanzlei für Reputationsschutz
+  description: Negative Bewertungen und Verleumdungen bei Google, Kununu, Jameda, Tripadvisor, Trustpilot und anderen Portalen löschen lassen.
+  slogan: Überlassen Sie Ihren Ruf nicht anderen!
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
 preview:
-  title: Email Marketing is Future for Grow Your Business Revenues
-  description: We believe that a good email marketing strategy is the key to growth. So we’re helping you grow your business with tools and resources that make email marketing easy.
-  image: https://placehold.co/700
-  image_alt: Dashboard with reports
-  button:
-    text: Try This Free
-    url: /signup
+  title: Google Bewertungen löschen
+  subtitle: Spezialkanzlei für Reputationsschutz
+  description: Negative Bewertungen und Verleumdungen bei Google, Kununu, Jameda, Tripadvisor, Trustpilot und anderen Portalen löschen lassen.
+  slogan: Überlassen Sie Ihren Ruf nicht anderen!
 
 # Any extra CloudCannon inputs configuration to apply to the blueprint
 _inputs:

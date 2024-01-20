@@ -1,0 +1,44 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Features
+  description: Features Section
+  icon: "checklist"
+  tags: []
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  title: Google Bewertungen löschen - mit diesen Vorteilen
+  LIST:
+    - title: Spezialisierte Anwälte für negative Google Bewertungen
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Rechtsanwälte Imanuel Schulz und Florian Schulze sind spezialisiert auf das Löschen von negativen Google Bewertungen. Wir beraten Sie persönlich. Rechtsanwalt Schulz bearbeitet seit 2018 nur Fälle aus dem Bereich „Reputationsschutz“, insbesondere bzgl. der Löschbarkeit von Google Bewertungen in über 10.000 Fällen. Wir haben Erfahrung aus über 50 Gerichtsverfahren gegen diverse Bewertungsportale wie Google, Kununu, Jameda, Tripadvisor, Trustpilot und Co. Wir sind keine Agentur. Jede rechtliche Beschwerde bzgl. negativen Google Bewertungen von Agenturen gegenüber Google und Co ist rechtswidrig.
+    - title: Anwaltskosten erstatten lassen von Google
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: In über 5000 Fällen seit 2018 haben wir für unsere Mandanten Bewertungen mit Kostenerstattungsanspruch gegenüber dem Bewertungsportal gelöscht. Der Kostenerstattungsanspruch entsteht, wenn Sie die Bewertung selbst gemeldet haben und Google nicht im Rahmen der Prüfpflichten reagiert. In diesem Fall haben Sie das Recht sich einen Anwalt zu nehmen und sich die Anwaltskosten von Google erstatten zu lassen. Wir beraten Sie, wie das funktioniert.
+    - title: Kostengarantie & kostenlose Analyse Ihrer Bewertungen
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Wir beraten Sie unverbindlich und kostenlos, ob Ihre Google Bewertungen löschbar sind. Erst nach kostenloser Prüfung der Google Bewertungen und nach Prüfung der Erfolgsaussichten werden wir tätig. Wir kennen alle rechtlichen Strategien und Tricks um Google Bewertungen löschen zu lassen. Die Rechnung erhalten Sie mit Beendigung der Angelegenheit, wenn das Prüfverfahren bei Google abgeschlossen ist.
+    - title: Negative Bewertungen löschen mit Rechtsschutzversicherung
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Die Kosten (RVG) werden von der Rechtsschutzversicherung oft getragen. Wir kümmern uns kostenlos um die Kostendeckung und die Abrechnung. Sofern Sie noch keine Versicherung haben, empfehlen wir Ihnen gerne eine Versicherung ohne Wartezeit. Über unser Formular können Sie direkt eine kostenlose Deckungsanfrage stellen.
+    - title: Wechselrabatt und Geld zurück von Löschagentur
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Agenturen verstoßen gegen das Gesetz (RDG), wenn sie negative Bewertungen durch eine Rechtsbeschwerde beanstanden (OLG Hamburg 2023). In diesem Fall handelt die Agentur illegal. Wir erleben, dass sogenannte "Löschagenturen" durch unqualifizierte rechtliche Ausführungen gegenüber Google unlöschbar machen können (vgl. OLG Saarbrücken 5U 117/21). Bei einem Wechsel von einer Agentur zu uns zahlen Sie 89 € statt 159 €. Zudem wehren wir die Honorarforderung der Agentur für Sie ab oder fordern Ihr bereits gezahltes Honorar sogar zurück
+    - title: Festpreise, Paketpreise & Ratenzahlung
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Festpreise für Einzelbewertungen (159 € netto), Paketpreise und flexible Preisgestaltungen für mehrere Google Bewertungen (Paketpreise) ab 49 € netto zzgl. Umsatzsteuer pro beanstandeter negativer Google Bewertung. Falls erforderlich bieten wir Ihnen auch eine Ratenzahlung über 12 Monate an.
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Wir setzen Schadensersatzansprüche und Schmerzensgeld wegen der rechtswidrigen Google Bewertung durch. Wir mahnen den Bewerter der Rezension ab und stellen ihm die Anwaltskosten (RVG) in Rechnung. Die Unterlassungserklärung schützt Sie vor Wiederholungstaten. Zudem können wir Google verpflichten, dass die Bewertung nicht nochmal veröffentlicht wird.
+    - title: Rückerstattung der Kosten vom Finanzamt
+      icon: https://www.dein-ruf.de/assets/icons/gavel.svg
+      description: Rechtsanwaltskosten für das Löschen von Google Bewertungen können als außergewöhnliche Belastungen zu 100 Prozent steuerlich geltend gemacht werden. Es handelt sich um sogenannte Werbungskosten. Unsere Tätigkeit für das Löschen von Google Bewertungen können Sie daher von der Steuer absetzen. Für Details fragen Sie bitte Ihren Steuerberater.
+
+# Overrides any fields in the blueprint when viewing this component in the component browser
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  description:
+    type: markdown

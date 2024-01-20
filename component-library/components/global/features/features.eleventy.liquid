@@ -1,0 +1,129 @@
+<script>
+  function onClick (element) {
+    console.log(element);
+    document.querySelectorAll('.features-section .feature-item').forEach((x2) => {
+      x2.setAttribute('aria-expanded', false);
+      x2.querySelector('.feature-item__content').setAttribute('aria-hidden', true);
+      element.closest('.feature-item').setAttribute('aria-expanded', true);
+      element.closest('.feature-item').querySelector('.feature-item__content').setAttribute('aria-hidden', false);
+    });
+  }
+</script>
+<section class="features-section bg-[#eff6ff]">
+  <div class="relative max-w-screen-xl mx-auto pt-12 pb-12">
+    <div class="px-6 sm:px-8 w-full max-w-screen-xl mx-auto mb-8 lg:mb-8 xl:mb-12">
+      <h2 class="text-2xl xl:text-3xl tracking-tight font-normal text-gray-900">
+        {{ title }}
+      </h2>
+    </div>
+    <div class="px-6 sm:px-8 flex flex-wrap w-full max-w-screen-xl mx-auto gap-[var(--padding-h)]" aria-label="Google Bewertung löschen - mit diesen Vorteilen">
+      {% for item in LIST %}
+        {% if forloop.index == 1 %}
+          <div class="feature-item w-full">
+            <div
+              role="button"
+              id="features1Header{{ forloop.index }}"
+              aria-expanded="true"
+              aria-controls="features1-panel{{ forloop.index }}-content"
+              class="feature-item__header"
+              onclick="onClick(this)">
+              <div class="feature-item__header--icon bg-[#e6ecf5] sm:bg-transparent">
+                <img
+                  width="16"
+                  height="16"
+                  src="https://www.dein-ruf.de/assets/icons/gavel.svg"
+                  alt="Icon: Spezialisierte Anwälte für negative Google Bewertungen">
+              </div>
+              <h3 id="features1-panel{{ forloop.index }}-title" class="feature-item__header--title">
+                {{ item.title }}
+              </h3>
+              <div class="feature-item__header--expand-icon">
+                <svg
+                  width="24"
+                  height="15"
+                  viewBox="0 0 24 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.15 14.75L0 12.6L12 0.6L24 12.55L21.85 14.7L12 4.85L2.15 14.75Z" fill="black" />
+                </svg>
+              </div>
+            </div>
+            <div
+              role="region"
+              id="features1-panel{{ forloop.index }}-content"
+              aria-labelledby="features1Header{{ forloop.index }}"
+              class="feature-item__content">
+              <div>
+                <p>
+                  {{ item.description | markdownify }}
+                </p>
+                <div class="feature-item__actions">
+                  <a class="feature-item__action-item" href="https://www.dein-ruf.de/unser-team/">
+                    <span class="feature-item__action-item--label">Team</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="48"
+                      viewBox="0 96 960 960"
+                      width="48"><path d="m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z" fill="#fff" /></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="feature-item w-full">
+            <div
+              role="button"
+              id="features1Header{{forloop.index}}"
+              aria-expanded="false"
+              aria-controls="features1-panel{{forloop.index}}-content"
+              class="feature-item__header"
+              onclick="onClick(this)">
+              <div class="feature-item__header--icon bg-[#e6ecf5] sm:bg-transparent">
+                <img
+                  width="16"
+                  height="16"
+                  src="{{item.icon}}"
+                  alt="Icon: {{item.title}}">
+              </div>
+              <h3 id="features1-panel{{forloop.index}}-title" class="feature-item__header--title">
+                {{ item.title }}
+              </h3>
+              <div class="feature-item__header--expand-icon">
+                <svg
+                  width="24"
+                  height="15"
+                  viewBox="0 0 24 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.15 14.75L0 12.6L12 0.6L24 12.55L21.85 14.7L12 4.85L2.15 14.75Z" fill="black" />
+                </svg>
+              </div>
+            </div>
+            <div
+              role="region"
+              id="features1-panel{{forloop.index}}-content"
+              aria-labelledby="features1Header{{forloop.index}}"
+              class="feature-item__content">
+              <div>
+                <p>
+                  {{ item.description | markdownify }}
+                </p>
+                <div class="feature-item__actions">
+                  <a class="feature-item__action-item" href="https://www.dein-ruf.de/unser-team/">
+                    <span class="feature-item__action-item--label">Team</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="48"
+                      viewBox="0 96 960 960"
+                      width="48"><path d="m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z" fill="#fff" /></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

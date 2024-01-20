@@ -1,120 +1,418 @@
-<header>
-         <nav
-            class="navbar navbar-expand-lg position-fixed w-100 zindex-dropdown"
-            id="mainnavigationBar"
-         >
-            <div class="container-fluid">
-               <a class="navbar-brand" href="/">
-                  <img src="{{ nav.logo }}" alt="Nav-Logo" />
-               </a>
-               <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-               >
-                  <span class="navbar-toggler-default">
-                     <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <line
-                           x1="3.5"
-                           y1="5.5"
-                           x2="21.5"
-                           y2="5.5"
-                           stroke="#292D32"
-                           stroke-width="3"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        />
-                        <line
-                           x1="4.5"
-                           y1="12.5"
-                           x2="21.5"
-                           y2="12.5"
-                           stroke="#292D32"
-                           stroke-width="3"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        />
-                        <line
-                           x1="11.5"
-                           y1="19.5"
-                           x2="21.5"
-                           y2="19.5"
-                           stroke="#292D32"
-                           stroke-width="3"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        />
-                     </svg>
-                  </span>
-                  <span class="navbar-toggler-toggled">
-                     <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 28 28"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           d="M21.5 6.5L6.5 21.5"
-                           stroke="#404152"
-                           stroke-width="3"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        />
-                        <path
-                           d="M21.5 21.5L6.5 6.5"
-                           stroke="#404152"
-                           stroke-width="3"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        />
-                     </svg>
-                  </span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mx-auto mb-20 mb-lg-0">
-                     {% for item in nav.items %}
-                     {% assign url = item.link %}
-                     <li class="nav-item dropdown">
-                        {% if item.enable_dropdown and item.dropdown %}
-                           <a
-                           class="nav-link dropdown-link {% if page.url == url%}active{% endif %}"
-                           href="{{ item.link }}"
-                           id="navbarDropdown"
-                           role="button"
-                           aria-expanded="false"
-                           >{{ item.text }}</a>
-                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           {% for dropdown_item in item.dropdown %}
-                           <li>
-                              <a class="dropdown-item" href="{{ dropdown_item.dropdown_link }}">{{ dropdown_item.dropdown_text }}</a>
-                           </li>
-                           {% endfor %}
-                           </ul>
-                        {% else %}
-                           <a class="nav-link {% if page.url == url%}active{% endif %}" href="{{ item.link }}">{{ item.text }}</a>
-                        {% endif %}
-                     </li>
-                     {% endfor %}
-                  </ul>
-               </div> 
-               {% if nav.enable_nav_btn %}
-                <div class="d-none d-lg-block">
-                    <div class="nav-item">
-                    <a href="{{ nav.nav_btn.link }}" class="btn btn-sm btn-links">{{ nav.nav_btn.text}}</a>
-                    </div>
-                </div> 
-               {% endif %}
+<header id="appBar" class="flex flex-wrap xl:justify-start xl:flex-nowrap z-[9000] w-full bg-white xl:bg-transparent text-sm dark:bg-gray-800">
+  <nav class="max-w-[85rem] w-full px-4 mx-auto h-[var(--app-bar-height)] bg-white xl:bg-transparent" aria-label="Global">
+    <div class="relative xl:flex xl:items-center xl:justify-between bg-white xl:bg-transparent h-[var(--app-bar-height)]">
+
+      <div class="flex items-center justify-between h-[var(--app-bar-height)]">
+        <a class="flex-none text-xl font-medium block -mt-2" href="/" aria-label="Dein-Ruf.de">
+          <svg xmlns="http://www.w3.org/2000/svg" width="173" height="51" viewBox="0 0 173 51" fill="none">
+            <path d="M47.8945 44.6H48.8945V47.4L49.1945 46.7L50.1945 44.6H51.1945L49.7945 47.3L51.2945 50.7H50.2945L49.1945 48L48.7945 48.5V50.7H47.7945V44.6H47.8945ZM53.4945 49.1L53.1945 50.7H52.1945L53.5945 44.6H54.7945L55.9945 50.7H54.9945L54.7945 49.1H53.4945ZM54.5945 48.4L54.3945 47L54.1945 45.6L53.8945 47L53.5945 48.4H54.5945ZM57.4945 50.7V44.6H58.3945L59.3945 47.2L60.0945 49.2V44.5H60.8945V50.6H59.9945L58.9945 48C58.7292 47.3789 58.4956 46.7447 58.2945 46.1V50.7H57.4945ZM62.2945 50.2L64.2945 45.5H62.4945V44.5H65.4945V45.2L63.4945 49.7H65.4945V50.6H62.2945V50.1V50.2ZM66.9945 44.5H67.9945V49.8H69.5945V50.6H66.9945V44.5ZM73.3945 47.8H71.9945V49.8H73.5945V50.6H70.9945V44.5H73.4945V45.3H71.9945V47H73.3945V47.8ZM76.1945 44.5V50.6H75.1945V44.5H76.1945ZM80.1945 44.5H82.6945V45.3H80.9945V47.2H82.4945V48H80.9945V50.6H79.9945V44.5H80.1945ZM85.1945 44.5V48.5C85.1945 49.5 85.5945 49.8 85.8945 49.8C86.3945 49.8 86.5945 49.5 86.5945 48.5V44.5H87.5945V48.5C87.5945 50.1 86.9945 50.8 85.8945 50.8C84.8945 50.8 84.2945 50.1 84.2945 48.5V44.6H85.2945L85.1945 44.5ZM84.6945 43.5C84.6945 43.3 84.8945 43.1 85.1945 43.1C85.3945 43.1 85.5945 43.3 85.5945 43.6C85.5945 43.9 85.3945 44.1 85.1945 44.1C85.0619 44.1 84.9347 44.0473 84.8409 43.9536C84.7472 43.8598 84.6945 43.7326 84.6945 43.6V43.5ZM86.2945 43.5C86.2945 43.3 86.4945 43.1 86.6945 43.1C86.9945 43.1 87.1945 43.3 87.1945 43.6C87.1945 43.9 86.9945 44.1 86.6945 44.1C86.4945 44.1 86.2945 43.9 86.2945 43.6V43.5ZM89.3945 44.6L90.5945 44.5C91.1945 44.5 91.7945 44.5 92.0945 44.9C92.4945 45.2 92.5945 45.7 92.5945 46.2C92.5945 46.9 92.1945 47.4 91.5945 47.7C92.0945 47.9 92.2945 48.3 92.3945 49L92.7945 50.6H91.7945L91.4945 49.1C91.2945 48.4 91.0945 48.1 90.5945 48.1H90.3945V50.6H89.3945V44.6ZM90.3945 47.4H90.6945C91.1945 47.4 91.5945 46.9 91.5945 46.3C91.5945 45.7 91.2945 45.3 90.6945 45.3H90.3945V47.3V47.4ZM100.094 48.3V46L99.5945 48L98.9945 50.5H98.2945L97.6945 48.1L97.2945 46.1L97.1945 48.3L97.0945 50.6H95.9945L96.4945 44.5H97.4945L98.0945 47L98.5945 49C98.5945 48.4 98.7945 47.8 98.9945 47L99.5945 44.5H100.594L100.994 50.5H100.094L99.9945 48.5L100.094 48.3ZM105.194 47.8H103.794V49.8H105.394V50.6H102.794V44.5H105.294V45.3H103.694V47H105.194V47.8ZM106.994 44.6L107.994 44.5C108.694 44.5 109.294 44.6 109.594 45C110.094 45.4 110.394 46.2 110.394 47.5C110.394 48.8 110.094 49.6 109.594 50.1C109.194 50.5 108.594 50.7 107.794 50.7H106.894V44.6H106.994ZM107.994 49.9H108.194C108.794 49.9 109.394 49.3 109.394 47.4C109.394 46 108.994 45.3 108.194 45.3H107.894V49.9H107.994ZM112.994 44.5V50.6H111.994V44.5H112.994ZM117.194 47.8H115.794V49.8H117.395V50.6H114.794V44.5H117.294V45.3H115.694V47H117.194V47.8ZM118.994 50.6V44.5H119.895L120.895 47.1L121.594 49.1V44.5H122.395V50.6H121.395L120.395 48L119.794 46.1V50.7H118.994V50.6ZM129.294 50.6L128.994 50.1C128.694 50.5 128.194 50.7 127.694 50.7C126.694 50.7 126.094 49.9 126.094 49C126.09 48.6638 126.169 48.3318 126.327 48.0347C126.484 47.7376 126.714 47.4849 126.994 47.3C126.713 46.8827 126.541 46.4012 126.494 45.9C126.494 45.1 127.095 44.4 127.895 44.4C128.595 44.4 129.194 44.9 129.194 45.8C129.194 46.3 128.994 46.8 128.194 47.4L129.194 48.9C129.394 48.5 129.394 47.9 129.494 47.4H130.294C130.294 48.2 129.994 49 129.594 49.6L130.394 50.6H129.394H129.294ZM128.594 49.6L127.395 47.8C127.195 48.1 126.994 48.4 126.994 48.8C126.994 49.4 127.294 49.9 127.794 49.9C128.194 49.9 128.394 49.9 128.594 49.6ZM127.395 45.9C127.395 46.3 127.494 46.5 127.794 46.9C128.194 46.6 128.394 46.2 128.394 45.8C128.394 45.5 128.295 45.1 127.895 45.1C127.595 45.1 127.395 45.4 127.395 45.9ZM134.894 44.5V50.6H133.894V44.5H134.894ZM137.394 45.4H136.394V44.5H139.594V45.4H138.494V50.6H137.494V45.5L137.394 45.4ZM143.094 44.6L144.294 44.5C144.994 44.5 145.494 44.5 145.794 44.9C146.194 45.2 146.294 45.7 146.294 46.2C146.294 46.9 145.994 47.4 145.294 47.7C145.794 47.9 145.994 48.3 146.094 49L146.494 50.6H145.494L145.194 49.1C145.094 48.4 144.794 48.1 144.294 48.1H144.094V50.6H143.094V44.6ZM144.094 47.4H144.294C144.894 47.4 145.294 46.9 145.294 46.3C145.294 45.7 144.994 45.3 144.394 45.3H144.094V47.3V47.4ZM150.294 47.8H148.894V49.8H150.494V50.6H147.894V44.5H150.394V45.3H148.894V47H150.294V47.8ZM154.894 50.5C154.614 50.6358 154.306 50.7043 153.994 50.7C152.594 50.7 151.794 49.5 151.794 47.7C151.794 45.3 152.994 44.4 154.094 44.4L154.894 44.6L154.794 45.4L154.194 45.3C153.494 45.3 152.794 45.9 152.794 47.5C152.794 49.2 153.394 49.8 154.194 49.8L154.794 49.7L154.894 50.5ZM157.294 44.5V47H158.794V44.5H159.794V50.6H158.794V47.9H157.294V50.6H156.294V44.5H157.294ZM162.294 45.4H160.994V44.5H164.194V45.4H163.194V50.6H162.194V45.5L162.294 45.4Z" fill="#29ABE2"/>
+            <path d="M47.2945 39.6V17.6H51.9945C55.2945 17.6 57.6945 17.9 59.0945 18.4C61.2945 19.1 62.9945 20.4 64.0945 22.3C65.416 24.2408 66.0818 26.5536 65.9945 28.9C65.9945 31.1 65.4945 33 64.4945 34.7C63.4945 36.4 62.2945 37.7 60.7945 38.4C58.7851 39.2975 56.5925 39.7086 54.3945 39.6H47.3945H47.2945ZM49.3945 37.6H51.9945C54.9945 37.6 57.0945 37.4 58.2945 37C59.9945 36.4 61.2945 35.5 62.2945 34C63.2072 32.4962 63.6591 30.7579 63.5945 29C63.5945 26.8 63.0945 25 62.0945 23.5C61.067 21.9964 59.5458 20.8997 57.7945 20.4C55.564 19.902 53.2777 19.7003 50.9945 19.8H49.3945V37.5V37.6ZM84.0945 34.2L85.7945 35.2C85.3032 36.2176 84.6247 37.1335 83.7945 37.9C83.0148 38.6165 82.1007 39.171 81.105 39.5315C80.1094 39.892 79.0521 40.0512 77.9945 40C75.3945 40 73.2945 39.2 71.7945 37.4C70.3586 35.772 69.575 33.6707 69.5945 31.5C69.5945 29.5 70.1945 27.6 71.4945 26C73.0945 24 75.1945 23 77.8945 23C80.6945 23 82.8945 24 84.5945 26C85.8191 27.6049 86.4546 29.5821 86.3945 31.6H71.6945C71.6945 33.6 72.3945 35.1 73.4945 36.3C74.0591 36.8938 74.7432 37.3613 75.5016 37.6715C76.26 37.9818 77.0756 38.1278 77.8945 38.1C79.5013 38.0875 81.0549 37.5225 82.2945 36.5C82.7945 36.1 83.3945 35.3 84.0945 34.2ZM84.0945 29.8C83.8479 28.8519 83.405 27.9662 82.7945 27.2C82.1817 26.5053 81.4275 25.9496 80.5824 25.5702C79.7373 25.1908 78.8208 24.9964 77.8945 25C76.4223 24.9923 74.9986 25.5262 73.8945 26.5C72.9318 27.3909 72.2388 28.5343 71.8945 29.8H84.0945ZM91.5945 16.6C92.0945 16.6 92.4945 16.8 92.7945 17.1C93.1945 17.5 93.2945 17.9 93.2945 18.4C93.2945 18.8 93.1945 19.2 92.7945 19.6C92.4945 19.9 92.0945 20.1 91.5945 20.1C91.0945 20.1 90.6945 19.9 90.3945 19.6C89.9945 19.2 89.8945 18.8 89.8945 18.4C89.8945 17.9 89.9945 17.4 90.3945 17.1C90.6945 16.8 91.0945 16.6 91.5945 16.6ZM90.5945 23.3H92.5945V39.6H90.5945V23.3ZM97.5945 23.3H99.5945V26.3C100.594 25.1 101.394 24.3 102.494 23.8C103.494 23.2 104.494 22.9 105.794 22.9C106.944 22.8551 108.075 23.2083 108.994 23.9C109.994 24.5 110.694 25.3 111.094 26.3C111.594 27.4 111.794 29 111.794 31.3V39.5H109.694V31.8C109.694 29.8 109.694 28.6 109.494 28C109.194 27 108.694 26.1 108.094 25.6C107.335 24.9791 106.374 24.6588 105.394 24.7C104.144 24.7654 102.947 25.227 101.976 26.0181C101.005 26.8091 100.311 27.8884 99.9945 29.1C99.7945 29.9 99.6945 31.4 99.6945 33.5V39.5H97.5945V23.3ZM115.494 30.4H123.694V32.3H115.494V30.4Z" fill="#214679"/>
+            <path d="M127.994 17.6H132.494C134.894 17.6 136.494 17.7 137.494 17.9C138.694 18.2 139.794 18.9 140.594 19.9C141.394 20.9 141.894 22 141.894 23.5C141.894 24.7 141.594 25.7 140.994 26.6C140.394 27.6 139.594 28.2 138.594 28.6C137.594 29.2 136.094 29.4 134.194 29.4L142.194 39.6H139.394L131.494 29.5H130.294V39.7H127.994V17.7V17.6ZM130.294 19.8V27.2H134.094C135.494 27.2 136.594 27.2 137.294 26.9C137.981 26.6016 138.57 26.1165 138.994 25.5C139.378 24.9034 139.582 24.2092 139.582 23.5C139.582 22.7908 139.378 22.0966 138.994 21.5C138.594 20.8 137.994 20.5 137.394 20.1C136.794 19.9 135.694 19.8 134.194 19.8H130.194H130.294ZM146.494 23.3H148.594V30.9C148.594 32.8 148.694 34.1 148.894 34.8C149.158 35.75 149.764 36.569 150.594 37.1C151.494 37.7 152.494 38.1 153.594 38.1C154.676 38.1 155.729 37.7491 156.594 37.1C157.494 36.6 157.994 35.9 158.294 34.9C158.494 34.3 158.594 32.9 158.594 30.9V23.3H160.794V31.3C160.794 33.6 160.494 35.3 159.994 36.4C159.491 37.5252 158.653 38.4679 157.594 39.1C156.594 39.7 155.294 40.1 153.594 40.1C152.23 40.1046 150.888 39.7604 149.694 39.1C148.636 38.4679 147.798 37.5252 147.294 36.4C146.794 35.2 146.494 33.5 146.494 31.2V23.3ZM172.694 17.1V19.1C171.994 18.8 171.294 18.6 170.694 18.6C170.34 18.6097 169.995 18.7132 169.694 18.9C169.472 19.0002 169.295 19.178 169.194 19.4V23.3H172.494V25.2H169.094V39.5H167.094V25.1H164.894V23.3H166.994V20.8C166.994 19.6 167.094 18.8 167.294 18.3C167.494 17.8 167.894 17.3 168.394 17.1C168.894 16.8 169.594 16.6 170.294 16.6C170.994 16.6 171.794 16.8 172.694 17.1Z" fill="#29ABE2"/>
+            <path d="M27.4945 46.9H27.6945C30.3945 47.5 34.9945 49.2 37.8945 50.3C36.434 47.987 35.3536 45.4549 34.6945 42.8L34.5945 42.3L34.8945 42C36.9807 39.9045 38.5814 37.3765 39.5836 34.5945C40.5858 31.8126 40.965 28.8446 40.6945 25.9L35.3945 30.7C34.654 34.5606 32.5182 38.0135 29.3945 40.4C26.7945 42.4 23.5945 43.4 20.3945 43.4C16.2571 43.4 12.2892 41.7564 9.36362 38.8309C6.43805 35.9053 4.79448 31.9374 4.79448 27.8C4.79448 23.6626 6.43805 19.6947 9.36362 16.7691C12.2892 13.8436 16.2571 12.2 20.3945 12.2C22.8945 12.2 27.5945 12.9 31.6945 16.9L35.4945 14.1C33.0209 11.3859 29.8575 9.39367 26.3412 8.33538C22.8249 7.27709 19.0873 7.19243 15.5267 8.09042C11.966 8.9884 8.71565 10.8354 6.12175 13.4347C3.52785 16.0339 1.68757 19.2881 0.796949 22.8506C-0.0936731 26.4131 -0.0012877 30.1505 1.06426 33.6646C2.12982 37.1787 4.12863 40.338 6.84779 42.806C9.56695 45.2739 12.9046 46.958 16.5053 47.679C20.1059 48.4 23.8347 48.1307 27.2945 46.9H27.4945Z" fill="#214679"/>
+            <path d="M9.69449 24.3L21.5945 38.5L61.7945 0.200001L20.9945 28.7L9.69449 24.3Z" fill="#29ABE2"/>
+            <path d="M9.69449 24.2L21.4945 38.7L20.8945 28.9L9.69449 24.2Z" fill="#299FD4"/>
+          </svg>
+        </a>
+        <div class="xl:hidden">
+          <button id="appBarToggle" type="button" class="hs-collapse-toggle flex justify-center items-center w-12 h-12 text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" data-hs-collapse="#appbar-collapse-with-animation" aria-controls="appbar-collapse-with-animation" aria-label="Toggle navigation">
+            <svg class="hs-collapse-open:hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+            <svg class="hs-collapse-open:block hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="appbar-collapse-with-animation" class="hidden overflow-hidden transition-all duration-300 basis-full grow xl:block bg-white xl:bg-transparent">
+        <div class="px-4 overflow-hidden overflow-y-scroll xl:overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+          <div class="flex flex-col gap-x-0 mt-5 mb-5 xl:mt-0 xl:mb-0 xl:flex-row xl:items-center xl:justify-end xl:gap-x-[2px] xl:ps-7">
+
+            <div class="hs-dropdown [--strategy:static] xl:[--strategy:absolute] [--adaptive:none] xl:[--trigger:hover] xl:h-[var(--app-bar-height)] xl:min-h-[var(--app-bar-height)] xl:p-0 xl:flex xl:items-center">
+
+              <button type="button" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Ratgeber</button>
+
+              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] xl:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 lg:w-full xl:w-[1111px] hidden z-10 top-full start-0 min-w-[15rem] bg-white xl:shadow-2xl rounded-b-3xl py-2 xl:p-4 before:absolute before:-top-5 before:start-0 before:w-full before:h-5">
+                <div class="xl:grid xl:grid-cols-3 gap-4">
+                  <div class="flex flex-col mx-1 xl:mx-0">
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/checkliste/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Checkliste</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/google-rezension-loeschen-lassen/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="14" y="3" rx="1"/><path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Google Rezensionen</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/bewertung-online-pruefen/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Bewertung online prüfen</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/category/ratgeber/portale-ratgeber/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Portale</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/category/ratgeber/allgemein-ratgeber/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Allgemein</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/nachteile-ohne-anwalt/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Nachteile ohne Anwalt</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/warum-zum-anwalt/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Warum zum Anwalt</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/category/ratgeber/hinweise/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Hinweise</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/category/ratgeber/tipps-tricks/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Tipps & Tricks</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/faq/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">FAQ</p>
+                      </div>
+                    </a>
+
+                  </div>
+
+                  <div class="flex flex-col mx-1 xl:mx-0">
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/kununu-bewertungen-loeschen/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Kununu Bewertungen löschen</p>
+                        <p class="text-sm text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-200">Ungerechtfertigte Rezensionen auf Kununu – das sollten Arbeitgeber tun.</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/jameda-bewertungen-loeschen/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Jameda Bewertungen löschen</p>
+                        <p class="text-sm text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-200">So können Ärzte eine negative Jameda Bewertung löschen lassen.</p>
+                      </div>
+                    </a>
+
+                    <a class="group flex gap-x-5 hover:bg-gray-100 rounded-lg p-4 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/google-bewertungen-kaufen/">
+                      <svg class="flex-shrink-0 w-5 h-5 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
+                      <div class="grow">
+                        <p class="font-medium text-gray-800 dark:text-gray-200">Bewertungen kaufen</p>
+                        <p class="text-sm text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-200">Beratung zu illegalen und legalen Tricks von einem spezialisierten Anwalt.</p>
+                      </div>
+                    </a>
+
+
+                  </div>
+
+                  <div class="flex flex-col pt-4 xl:pt-0 mx-1 xl:mx-0">
+
+                    <span class="text-sm font-semibold uppercase text-gray-800 dark:text-gray-200">Aktuelles</span>
+
+                    <a class="group mt-2 p-4 flex gap-x-5 items-center rounded-xl bg-gray-50 hover:bg-gray-100 dark:hover:bg-slate-500/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-slate-600 overflow-hidden" href="https://www.dein-ruf.de/google-bewertungen-loeschen/">
+                      <img class="w-32 h-32 rounded-lg" loading="lazy" src="https://storage.dein-ruf.de/posts/01-06-2024-advertorial-chip.de/image-01_1-1_optimized.jpg" alt="Google Bewertungen löschen: Das sollten Unternehmer beim Löschen von Google-Bewertungen beachten.">
+                      <div class="grow">
+                        <p class="text-sm text-gray-800 dark:text-slate-400">
+                          Das sollten Unternehmer beim Löschen von Google-Bewertungen beachten.
+                        </p>
+                        <p class="mt-3 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-400 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-slate-600">
+                          Mehr
+                          <svg class="flex-shrink-0 w-4 h-4 transition ease-in-out group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
-         </nav>
+
+            <div class="hs-dropdown [--strategy:static] xl:[--strategy:absolute] [--adaptive:none] xl:[--trigger:hover] xl:h-[var(--app-bar-height)] xl:min-h-[var(--app-bar-height)] xl:p-0 xl:flex xl:items-center">
+
+              <button type="button" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Portale</button>
+
+              <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] xl:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 lg:w-[640px] xl:w-[760px] hidden z-10 top-full start-60 overflow-hidden bg-white xl:shadow-2xl rounded-b-3xl before:absolute before:-top-5 before:start-0 before:w-full before:h-5">
+                <div class="grid grid-cols-2 xl:grid-cols-10">
+                  <div class="xl:col-span-3">
+                    <div class="flex flex-col py-6 px-4 xl:px-6">
+                      <div class="space-y-1">
+
+                        <span class="mb-2 text-xs font-semibold uppercase text-gray-800 dark:text-gray-200">Allgemein</span>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/portale/google-bewertungen-loeschen-lassen/" alt="Google Bewertugen löschen, Google Rezensionen löschen">
+
+                          <svg class="flex-shrink-0 w-6 h-6 border rounded-full" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Google Bewertungen löschen, Google Rezensionen löschen</title><rect width="100" height="100" rx="50" fill="white"/><path d="M81.5532 50.6746C81.5532 48.5709 81.3668 46.5737 81.0472 44.6297H50.9556V56.6397H68.1851C67.4128 60.5808 65.1492 63.9096 61.7939 66.1731V74.162H72.073C78.0914 68.5964 81.5532 60.3944 81.5532 50.6746Z" fill="#4285F4"/><path d="M50.9556 81.9112C59.5836 81.9112 66.8003 79.0352 72.0729 74.162L61.794 66.1731C58.9179 68.0905 55.2696 69.2622 50.9556 69.2622C42.6206 69.2622 35.5636 63.6433 33.0339 56.0539H22.4352V64.2824C27.6812 74.7212 38.4663 81.9112 50.9556 81.9112Z" fill="#34A853"/><path d="M33.0338 56.0538C32.3681 54.1365 32.0219 52.086 32.0219 49.9556C32.0219 47.8252 32.3948 45.7748 33.0338 43.8575V35.6288H22.4352C20.2516 39.9428 19 44.7894 19 49.9556C19 55.1218 20.2516 59.9684 22.4352 64.2824L33.0338 56.0538Z" fill="#FBBC05"/><path d="M50.9556 30.649C55.6691 30.649 59.8765 32.2735 63.2053 35.4424L72.3126 26.335C66.8003 21.1689 59.5836 18 50.9556 18C38.4663 18 27.6812 25.19 22.4352 35.6288L33.0339 43.8575C35.5636 36.268 42.6205 30.649 50.9556 30.649Z" fill="#EA4335"/></svg>
+
+                          <div class="grow"><p>Google</p></div>
+
+                        </a>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/trustpilot-bewertungen-loeschen-lassen/" alt="Trustpilot Bewertungen löschen">
+
+                          <svg class="flex-shrink-0 w-6 h-6 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100"><title>Trustpilot Bewertungen löschen</title><g clip-path="url(#a)"><path fill="#1C1C1C" d="M100 50c0-27.6142-22.3858-50-50-50S0 22.3858 0 50s22.3858 50 50 50 50-22.3858 50-50Z"/><path fill="#04DA8D" d="M64.3045 49.0649h-12.801l-3.954-11.969-3.968 11.97-12.8-.013 10.367 7.404-3.966 11.956 10.367-7.392 10.355 7.392-3.954-11.956 10.354-7.392Z"/><path fill="#04DA8D" d="M85.3158 38.8182H58.3446L50.0137 13.6l-8.3604 25.2203-26.9691-.0274 21.8428 15.6-8.3562 25.1908L50.0137 64.009l21.8176 15.5747-8.3309-25.1908 21.8154-15.5747Z"/><path fill="#126849" d="m65.3734 60.0985-1.8752-5.7035-13.4845 9.6161 15.3597-3.9126Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h100v100H0z"/></clipPath></defs></svg>
+
+                          <div class="grow"><p>Trustpilot</p></div>
+
+                        </a>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/kununu-bewertungen-loeschen-lassen/">
+
+                          <img loading="lazy" class="flex-shrink-0 w-6 h-6 rounded-full" src="https://storage.dein-ruf.de/icons/platforms/logo-icon_review-source-kununu.com.svg" width="24" height="24" alt="Negative Bewertungen löschen: Kununu">
+
+                          <div class="grow"><p>Kununu</p></div>
+
+                        </a>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/portale/yelp-bewertungen-loeschen-lassen/">
+
+                          <img loading="lazy" class="flex-shrink-0 w-6 h-6 rounded-full" src="https://storage.dein-ruf.de/icons/platforms/logo-icon_review-source-yelp.com.svg" width="24" height="24" alt="Negative Bewertungen löschen: Yelp">
+
+                          <div class="grow"><p>Yelp</p></div>
+
+                        </a>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/portale/facebook-bewertungen-loeschen-lassen/">
+
+                          <img loading="lazy" class="flex-shrink-0 w-6 h-6 rounded-full" src="https://storage.dein-ruf.de/icons/platforms/logo-icon_review-source-facebook.com.svg" width="24" height="24" alt="Negative Bewertungen löschen: Facebook">
+
+                          <div class="grow"><p>Facebook</p></div>
+
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="xl:col-span-3">
+                    <div class="flex flex-col py-6 px-4 xl:px-6">
+                      <div class="space-y-1">
+
+                        <span class="mb-2 text-xs font-semibold uppercase text-gray-800 dark:text-gray-200">Ärzte</span>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/portale/jameda-bewertungen-loeschen-lassen/">
+
+                          <img loading="lazy" class="flex-shrink-0 w-6 h-6 rounded-full" src="https://storage.dein-ruf.de/icons/platforms/logo-icon_review-source-jameda.de.svg" width="24" height="24" alt="Negative Bewertungen löschen: Jameda">
+
+                          <div class="grow"><p>Jameda</p></div>
+
+                        </a>
+
+                      </div>
+
+                      <div class="mt-7 space-y-1">
+
+                        <span class="mb-2 text-xs font-semibold uppercase text-gray-800 dark:text-gray-200">Gastronomie & Hotels</span>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/tripadvisor-bewertungen-loeschen-lassen/">
+
+                          <img loading="lazy" class="flex-shrink-0 w-6 h-6 rounded-full" src="https://storage.dein-ruf.de/icons/platforms/logo-icon_review-source-tripadvisor.com.svg" width="24" height="24" alt="Negative Bewertungen löschen: Tripadvisor">
+
+                          <div class="grow"><p>Tripadvisor</p></div>
+
+                        </a>
+
+                        <a class="flex gap-x-2 text-gray-800 items-center -ml-2.5 px-1.5 py-1.5 hover:bg-gray-50 mdc-ripple-surface mdc-ripple-surface-dark rounded-lg font-medium" href="/holidaycheck-bewertungen-loeschen-lassen/">
+
+                          <img loading="lazy" class="flex-shrink-0 w-6 h-6 rounded-full" src="https://storage.dein-ruf.de/icons/platforms/logo-icon_review-source-holidaycheck.de.svg" width="24" height="24" alt="Negative Bewertungen löschen: HolidayCheck">
+
+                          <div class="grow"><p>HolidayCheck</p></div>
+
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-span-full xl:col-span-4 hidden xl:block">
+                    <div class="flex flex-col bg-gray-50 p-6 dark:bg-gray-700 rounded-rb-3xl overflow-hidden">
+
+                      <span class="text-xs font-semibold uppercase text-gray-800 dark:text-gray-200">Aktuelles</span>
+
+                      <a class="mt-4 group dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.dein-ruf.de/tipps-fuer-arbeitgeber-negative-kununu-bewertungen-loeschen/">
+                        <div class="aspect-[16/9] overflow-hidden rounded-lg">
+                          <img class="w-full object-cover" loading="lazy" src="https://storage.dein-ruf.de/posts/12-11-2023-tipps-fuer-arbeitgeber-negative-kununu-bewertungen-loeschen/image-01_1-1_optimized.jpg" alt="Google Rezensionen löschen: Tipps für Arbeitgeber">
+                        </div>
+                        <div class="mt-2">
+                          <p class="text-gray-800 dark:text-gray-200">Tipps für Arbeitgeber: Negative Kununu Bewertungen löschen.</p>
+                          <p class="mt-3 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-400 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-slate-600">Mehr <svg class="flex-shrink-0 w-4 h-4 transition ease-in-out group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></p>
+                        </div>
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <a href="/preise/" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Preise</a>
+
+            <a href="/medien/" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Medien</a>
+
+            <a href="/unser-team/" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Team</a>
+
+            <a href="https://www.dein-ruf.de/referenzen/" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Referenzen</a>
+
+            <a href="/portale/jameda-bewertungen-loeschen-lassen/" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Für Ärzte</a>
+
+            <a href="/grosskunden-service/" class="relative custom-button flex items-center w-full xl:w-max text-[var(--s)] px-4 py-3.5 xl:px-2.5 xl:py-1.5 rounded-full xl:rounded-lg font-semibold hover:text-[var(--p)]"><md-ripple></md-ripple>Für Großkunden</a>
+
+            <is-land class="hidden xl:block" on:interaction import="/assets/js/place-order-modal.js">
+              <button class="open-place-order-modal items-center gap-x-2 font-medium text-white bg-linear-gradient-p1 sm:my-6 px-3 rounded-lg hidden xl:flex mdc-ripple-surface mdc-ripple-surface-light h-10 ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M216 912q-29.7 0-50.85-21.15Q144 869.7 144 840V312q0-29.7 21.15-50.85Q186.3 240 216 240h171q8-31 33.5-51.5T480 168q34 0 59.5 20.5T573 240h171q29.7 0 50.85 21.15Q816 282.3 816 312v528q0 29.7-21.15 50.85Q773.7 912 744 912H216Zm72-144h288v-72H288v72Zm0-156h384v-72H288v72Zm0-156h384v-72H288v72Zm192-168q10.4 0 17.2-6.8 6.8-6.8 6.8-17.2 0-10.4-6.8-17.2-6.8-6.8-17.2-6.8-10.4 0-17.2 6.8-6.8 6.8-6.8 17.2 0 10.4 6.8 17.2 6.8 6.8 17.2 6.8Z" fill="#fff"/></svg>
+                Online Auftrag
+              </button>
+            </is-land>
+
+            <a href="tel:+493029681118" class="items-center gap-x-2 font-medium text-white bg-linear-gradient-s1 sm:my-6 px-3 rounded-lg hidden xl:flex bg-linear-gradient-s1 mdc-ripple-surface mdc-ripple-surface-light h-10 ml-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20">
+                <path d="M763 911q-123-10-232-61.5T339.5 715Q257 632 205 523t-61-232q-2-21 12.5-36.5T192 239h136q17 0 29.5 10t16.5 27l24 107q2 12-1 24t-12 21l-97 98q42 76 103 137t137 103l99-96q10-10 22-12.5t23-.5l107 23q17 4 27 17t10 30v136q0 27-19 38t-34 10Z" fill="#fff"/>
+              </svg>
+              030 29 68 11 18
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
 </header>
+
+{% comment %} <header>
+  <nav class="navbar navbar-expand-lg position-fixed w-100 zindex-dropdown" id="mainnavigationBar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="{{ nav.logo }}" alt="Nav-Logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-default">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <line
+              x1="3.5"
+              y1="5.5"
+              x2="21.5"
+              y2="5.5"
+              stroke="#292D32"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+            <line
+              x1="4.5"
+              y1="12.5"
+              x2="21.5"
+              y2="12.5"
+              stroke="#292D32"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+            <line
+              x1="11.5"
+              y1="19.5"
+              x2="21.5"
+              y2="19.5"
+              stroke="#292D32"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="navbar-toggler-toggled">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M21.5 6.5L6.5 21.5"
+              stroke="#404152"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M21.5 21.5L6.5 6.5"
+              stroke="#404152"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-20 mb-lg-0">
+          {% for item in nav.items %}
+            {% assign url = item.link %}
+            <li class="nav-item dropdown">
+              {% if item.enable_dropdown and item.dropdown %}
+                <a
+                  class="nav-link dropdown-link {% if page.url == url%}active{% endif %}"
+                  href="{{ item.link }}"
+                  id="navbarDropdown"
+                  role="button"
+                  aria-expanded="false">{{ item.text }}</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for dropdown_item in item.dropdown %}
+                    <li>
+                      <a class="dropdown-item" href="{{ dropdown_item.dropdown_link }}">{{ dropdown_item.dropdown_text }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <a class="nav-link {% if page.url == url%}active{% endif %}" href="{{ item.link }}">{{ item.text }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if nav.enable_nav_btn %}
+        <div class="d-none d-lg-block">
+          <div class="nav-item">
+            <a href="{{ nav.nav_btn.link }}" class="btn btn-sm btn-links">{{ nav.nav_btn.text }}</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+</header> {% endcomment %}

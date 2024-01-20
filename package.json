@@ -9,23 +9,48 @@
     "bookshop-sass:watch": "bookshop-sass -b component-library -o site/css/theme.css -w",
     "eleventy:build": "ELEVENTY_ENV=production eleventy",
     "eleventy:watch": "ELEVENTY_ENV=development eleventy --serve",
-    "start": "npm-run-all bookshop-sass:fetch-theme-color bookshop-sass:build --parallel bookshop-sass:watch bookshop:watch eleventy:watch"
+    "start": "npm-run-all bookshop-sass:fetch-theme-color bookshop-sass:build --parallel bookshop-sass:watch bookshop:watch eleventy:watch css:main css:components css:libs",
+    "css:main": "npx postcss site/css/*.css --dir _site/css",
+    "css:components": "npx postcss site/css/components --dir _site/css/components",
+    "css:libs": "npx postcss site/css/libs --dir _site/css/libs"
   },
   "author": "CloudCannon",
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/is-land": "^4.0.0",
     "@11tyrocks/eleventy-plugin-emoji-readtime": "^1.0.1",
-    "@bookshop/browser": "3.3.3",
-    "@bookshop/eleventy-bookshop": "3.3.3",
-    "@bookshop/eleventy-engine": "3.3.3",
-    "@bookshop/generate": "3.3.3",
+    "@bookshop/browser": "^3.9.0",
+    "@bookshop/eleventy-bookshop": "^3.9.0",
+    "@bookshop/eleventy-engine": "^3.9.0",
+    "@bookshop/generate": "^3.9.0",
+    "eleventy-plugin-pdfembed": "^1.0.2",
     "eleventy-plugin-wordcount": "^1.0.5",
-    "markdown-it": "^13.0.1",
+    "flowbite": "^2.2.1",
+    "lite-youtube-embed": "^0.3.0",
+    "markdown-it": "^14.0.0",
     "npm-run-all": "^4.1.5",
-    "punycode": "^2.1.1"
+    "preline": "^2.0.3",
+    "punycode": "^2.3.1",
+    "swiper": "^11.0.5",
+    "tailgrids": "^2.1.0",
+    "tw-elements": "^1.1.0",
+    "xtendui": "^1.4.2"
   },
   "devDependencies": {
-    "@bookshop/sass": "3.3.3"
+    "@11ty/eleventy-plugin-webc": "^0.11.2",
+    "@bookshop/sass": "^3.9.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.17",
+    "cssnano": "^6.0.3",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
+    "postcss-combine-duplicated-selectors": "^10.0.3",
+    "postcss-import": "^16.0.0",
+    "postcss-import-ext-glob": "^2.1.1",
+    "postcss-jit-props": "^1.0.14",
+    "postcss-js": "^4.0.1",
+    "postcss-preset-env": "^9.3.0",
+    "tailwindcss": "^3.4.1"
   }
 }

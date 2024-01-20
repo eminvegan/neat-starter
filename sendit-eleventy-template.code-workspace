@@ -1,0 +1,116 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"[html]": {
+      "editor.rulers": [120],
+      "editor.defaultFormatter": "vscode.html-language-features",
+      "editor.formatOnSave": false,
+      "editor.wordWrap": "bounded",
+      "editor.wordWrapColumn": 120
+    },
+		"[markdown]": {
+      "editor.rulers": [120],
+      "editor.defaultFormatter": "vscode.html-language-features",
+      "editor.formatOnSave": false,
+      "editor.wordWrap": "bounded",
+      "editor.wordWrapColumn": 120
+    },
+		"[njk]": {
+      "editor.rulers": [120],
+      // "editor.defaultFormatter": "vscode.html-language-features",
+      // "editor.formatOnSave": false,
+      // "editor.wordWrap": "on",
+      // "editor.wordWrapColumn": 120
+    },
+		"vsicons.associations.files": [
+			{ "icon": "html", "extensions": ["njk"], "format": "svg" }
+		],
+		"material-icon-theme.files.associations": {
+			"*.html": "html",
+			"*.webc": "html",
+			"*.njk": "html"
+		},
+		"nunjucksTemplate.preserveEmptyLine": 3,
+		"emmet.includeLanguages": {
+			"njk": "html",
+			"webc": "html",
+			"html": "html"
+		},
+		"files.associations": {
+			"*.html": "html",
+			"*.webc": "html",
+			"*.njk": "njk",
+			"*.css": "css",
+		},
+		"emmet.triggerExpansionOnTab": true,
+		"emmet.showSuggestionsAsSnippets": true,
+		"emmet.variables": {
+			"lang": "de-DE",
+			"charset": "UTF-8"
+		},
+		"editor.inlineSuggest.suppressSuggestions": false,
+		"editor.suggest.showWords": false,
+		"editor.quickSuggestions": {
+			"strings": "on"
+		},
+		"tailwindCSS.includeLanguages": {
+			"plaintext": "html"
+		},
+		"files.trimTrailingWhitespace": true,
+		"editor.guides.highlightActiveIndentation": true,
+    "editor.guides.indentation": false,
+		"files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/node_modules": false
+    },
+		"explorer.autoReveal": false,
+		"editor.foldingImportsByDefault": true,
+    "editor.scrollbar.horizontal": "visible",
+    "editor.scrollbar.vertical": "visible",
+		"editor.foldingHighlight": false,
+		"subtleBrackets.style": {
+      "borderWidth": "2px"
+		},
+		"editor.tabSize": 2,
+		// "[nunjucks]": {
+		// 	// "editor.wordWrapColumn": 100,
+		// 	"editor.wordWrap": "bounded"
+		// },
+		// "html.format.wrapAttributes": "preserve",
+		// "html.format.wrapAttributesIndentSize": 0,
+		"editor.bracketPairColorization.enabled": true,
+		"editor.guides.bracketPairs":"active",
+    "[javascript]": {
+			"editor.formatOnSave": false,
+			"editor.formatOnPaste": false,
+			"editor.renderWhitespace": "all",
+			"editor.foldingStrategy": "indentation",
+			// "editor.foldingStrategy": "auto"
+			"editor.getOutliningSpans": ""
+		},
+		"[javascriptreact]": {
+				"editor.formatOnSave": false,
+				"editor.formatOnPaste": false,
+				"editor.renderWhitespace": "all",
+				"editor.foldingStrategy": "indentation"
+		},
+		"css.lint.unknownProperties": "ignore",
+		"[css]": {
+
+		},
+		"css-lbracketexpected": "",
+		"scss.lint.unknownVendorSpecificProperties": "ignore",
+		"editor.wordWrap": "wordWrapColumn",
+		// "editor.wordWrap": "wordWrapColumn",
+		// "editor.wordWrapColumn": 120,
+	},
+}
